@@ -1,0 +1,1399 @@
+/* ==========================================================================
+   PORTAFOLIO MARÍA BAZÁN - ESTILOS PRINCIPALES
+   Fiel a la identidad visual de SOBRE MI.pdf
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Variables de Diseño y Paleta de Color
+   -------------------------------------------------------------------------- */
+:root {
+  --yellow-glow: #FFF7CB;
+  --yellow-main: #F7E194;
+  --yellow-deep: #ECC968;
+  --yellow-paper: #F6EDD8;
+  
+  --olive-gold: #836E17;
+  --olive-dark: #4F4312;
+  --olive-deepest: #2E270A;
+  --olive-forest: #3E4B25;
+  
+  --paper-bg: #F7F1E5;
+  --paper-shadow: rgba(85, 70, 30, 0.12);
+  
+  --text-main: #2A2410;
+  --text-muted: #5C5232;
+  --text-light: #8A7E5A;
+  
+  --font-script: 'Caveat', cursive;
+  --font-display: 'Oswald', sans-serif;
+  --font-editorial: 'Playfair Display', serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+  
+  --shadow-soft: 0 10px 30px rgba(79, 67, 18, 0.08);
+  --shadow-medium: 0 15px 40px rgba(50, 40, 10, 0.14);
+  --shadow-heavy: 0 25px 60px rgba(35, 28, 5, 0.22);
+  
+  --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --------------------------------------------------------------------------
+   Resets & Base
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--text-main);
+  background-color: var(--yellow-main);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: var(--transition);
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+/* --------------------------------------------------------------------------
+   Layout Helpers
+   -------------------------------------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* --------------------------------------------------------------------------
+   Navbar
+   -------------------------------------------------------------------------- */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(253, 247, 230, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(131, 110, 23, 0.15);
+  transition: var(--transition);
+}
+
+.navbar.scrolled {
+  background: rgba(253, 247, 230, 0.97);
+  box-shadow: 0 6px 20px rgba(60, 48, 12, 0.08);
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 76px;
+}
+
+.brand-logo {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-name {
+  font-family: var(--font-script);
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--olive-dark);
+}
+
+.brand-tag {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--olive-gold);
+  margin-top: 2px;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 32px;
+}
+
+.nav-link {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--olive-dark);
+  position: relative;
+  padding: 6px 0;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background-color: var(--olive-gold);
+  transition: var(--transition);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.btn-contact-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--olive-dark);
+  color: #FFFDF5;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 10px 22px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 4px 14px rgba(79, 67, 18, 0.25);
+}
+
+.btn-contact-nav:hover {
+  background: var(--olive-forest);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(62, 75, 37, 0.35);
+}
+
+.mobile-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px;
+}
+
+.mobile-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: var(--olive-dark);
+  transition: var(--transition);
+}
+
+/* --------------------------------------------------------------------------
+   SECCIÓN 1: HERO (Recreación exacta Diapositiva 1)
+   -------------------------------------------------------------------------- */
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  padding-top: 100px;
+  padding-bottom: 60px;
+  background: radial-gradient(circle at 50% 45%, #FFF6CC 0%, #F7E194 65%, #ECC968 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+}
+
+/* Composición de Diapositiva 1 */
+.hero-composition {
+  position: relative;
+  width: 100%;
+  min-height: 580px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Textos Superiores */
+.hero-top-left {
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  z-index: 5;
+}
+
+.hero-greeting {
+  font-size: 1.35rem;
+  font-weight: 500;
+  color: var(--text-main);
+  line-height: 1.2;
+}
+
+.hero-name {
+  font-family: var(--font-script);
+  font-size: 3.8rem;
+  font-weight: 700;
+  color: var(--olive-dark);
+  line-height: 1;
+  display: block;
+  transform: rotate(-3deg);
+  margin-top: 2px;
+}
+
+.hero-top-right {
+  position: absolute;
+  top: 30px;
+  right: 20px;
+  z-index: 5;
+  text-align: right;
+}
+
+.hero-tagline-top {
+  font-size: 1.55rem;
+  font-weight: 500;
+  color: var(--text-main);
+  letter-spacing: -0.01em;
+}
+
+/* Elemento Central: PORTFolio */
+.hero-big-title-container {
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.hero-port {
+  font-family: var(--font-display);
+  font-size: clamp(6rem, 16vw, 14rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--olive-gold);
+  line-height: 0.85;
+  letter-spacing: -0.02em;
+}
+
+.hero-folio {
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-size: clamp(6rem, 16vw, 14rem);
+  font-weight: 400;
+  color: var(--olive-dark);
+  line-height: 0.85;
+  letter-spacing: -0.01em;
+}
+
+/* Fotografía Central de María */
+.hero-center-photo {
+  position: relative;
+  z-index: 3;
+  width: auto;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  filter: drop-shadow(0 15px 25px rgba(60, 48, 12, 0.22));
+  animation: subtleFloat 6s ease-in-out infinite;
+}
+
+.hero-center-photo img {
+  width: auto;
+  max-height: 350px;
+  height: auto;
+  object-fit: contain;
+}
+
+@keyframes subtleFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* Textos Inferiores */
+.hero-bottom-left {
+  position: absolute;
+  bottom: 10px;
+  left: 20px;
+  z-index: 5;
+}
+
+.hero-skills-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.hero-skills-list span {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--olive-dark);
+  line-height: 1.3;
+}
+
+.hero-bottom-right {
+  position: absolute;
+  bottom: 25px;
+  right: 20px;
+  z-index: 5;
+  text-align: right;
+}
+
+.hero-tagline-bottom {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--olive-dark);
+}
+
+/* Botones de Acción Rápida en Hero */
+.hero-cta-bar {
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  z-index: 10;
+  position: relative;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--olive-dark);
+  color: #FFFDF5;
+  font-size: 1.05rem;
+  font-weight: 600;
+  padding: 14px 32px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 6px 20px rgba(60, 48, 12, 0.25);
+}
+
+.btn-primary:hover {
+  background: var(--olive-forest);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(62, 75, 37, 0.35);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--olive-dark);
+  border: 1.5px solid var(--olive-dark);
+  font-size: 1.05rem;
+  font-weight: 600;
+  padding: 14px 28px;
+  border-radius: var(--radius-full);
+  backdrop-filter: blur(8px);
+}
+
+.btn-secondary:hover {
+  background: #FFFDF5;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(79, 67, 18, 0.15);
+}
+
+/* --------------------------------------------------------------------------
+   SECCIÓN 2: SOBRE MÍ (Recreación exacta Diapositiva 2)
+   Textura de papel craft + collage editorial
+   -------------------------------------------------------------------------- */
+.paper-section {
+  position: relative;
+  background-color: var(--paper-bg);
+  background-image: url('../assets/img/paper-texture.jpg');
+  background-repeat: repeat;
+  background-size: 600px auto;
+  box-shadow: inset 0 20px 30px rgba(0, 0, 0, 0.04), inset 0 -20px 30px rgba(0, 0, 0, 0.04);
+}
+
+.about-section {
+  padding: 110px 0;
+  border-top: 1px solid rgba(131, 110, 23, 0.15);
+  border-bottom: 1px solid rgba(131, 110, 23, 0.15);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+/* Columna Izquierda: Información */
+.about-content {
+  position: relative;
+}
+
+.about-title-badge {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 6px 28px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 24px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+  border: 1px dashed rgba(131, 110, 23, 0.3);
+}
+
+.about-title {
+  font-family: var(--font-display);
+  font-size: 2.8rem;
+  letter-spacing: 0.06em;
+  font-weight: 700;
+  color: var(--yellow-deep);
+  text-shadow: 1px 1px 0px rgba(100, 80, 20, 0.2);
+  line-height: 1.1;
+}
+
+.about-credentials-box {
+  background: rgba(255, 253, 245, 0.8);
+  border-left: 4px solid var(--olive-gold);
+  padding: 20px 24px;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 14px rgba(79, 67, 18, 0.06);
+}
+
+.credentials-text {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--olive-dark);
+  line-height: 1.5;
+}
+
+.credentials-text span {
+  color: var(--olive-forest);
+}
+
+.about-bio-box {
+  font-size: 1.05rem;
+  color: var(--text-main);
+  line-height: 1.7;
+  margin-bottom: 30px;
+}
+
+.about-bio-box p {
+  margin-bottom: 14px;
+}
+
+.about-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.tag-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(79, 67, 18, 0.08);
+  border: 1px solid rgba(79, 67, 18, 0.15);
+  color: var(--olive-dark);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+}
+
+/* Columna Derecha: Collage en Terreno */
+.about-visual {
+  position: relative;
+}
+
+.collage-container {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-heavy);
+  border: 8px solid rgba(255, 255, 255, 0.9);
+  transition: var(--transition);
+}
+
+.collage-container:hover {
+  transform: scale(1.015);
+  box-shadow: 0 30px 70px rgba(40, 30, 8, 0.28);
+}
+
+.collage-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.collage-caption {
+  position: absolute;
+  bottom: 12px;
+  right: 14px;
+  background: rgba(30, 24, 7, 0.75);
+  color: #FFFDF5;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  backdrop-filter: blur(4px);
+}
+
+/* --------------------------------------------------------------------------
+   SECCIÓN 3: VIDEOS VERTICALES (Recreación exacta Diapositiva 3)
+   4 Teléfonos inteligentes con maquetas reales
+   -------------------------------------------------------------------------- */
+.videos-vertical-section {
+  padding: 100px 0;
+  border-bottom: 1px solid rgba(131, 110, 23, 0.15);
+}
+
+.section-brush-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.videos-brush-img {
+  max-width: 380px;
+  margin: 0 auto 12px auto;
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.06));
+}
+
+.section-subtitle {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #241E0A;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* Grid de Teléfonos */
+.phones-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  align-items: center;
+}
+
+/* Tarjeta / Maqueta de Teléfono Interactivo */
+.phone-card {
+  position: relative;
+  border-radius: 42px;
+  background: #111;
+  padding: 10px;
+  box-shadow: 0 20px 45px rgba(25, 20, 5, 0.28);
+  border: 3.5px solid #2B2B2B;
+  cursor: pointer;
+  transition: var(--transition);
+  overflow: hidden;
+}
+
+.phone-card:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 30px 60px rgba(25, 20, 5, 0.38);
+  border-color: var(--yellow-deep);
+}
+
+/* Barra de bocina / sensor superior */
+.phone-notch {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 72px;
+  height: 16px;
+  background: #1A1A1A;
+  border-radius: var(--radius-full);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.phone-camera-dot {
+  width: 7px;
+  height: 7px;
+  background: #090909;
+  border-radius: 50%;
+  box-shadow: inset 0 0 2px rgba(255,255,255,0.2);
+}
+
+.phone-speaker-line {
+  width: 28px;
+  height: 3px;
+  background: #2D2D2D;
+  border-radius: 2px;
+}
+
+.phone-screen {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  border-radius: 34px;
+  overflow: hidden;
+  background: #000;
+}
+
+.phone-screen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.phone-card:hover .phone-screen img {
+  transform: scale(1.06);
+}
+
+/* Overlay de Reproducción al Hover */
+.play-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 16, 5, 0.35);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  opacity: 0.85;
+  transition: var(--transition);
+  z-index: 5;
+}
+
+.phone-card:hover .play-overlay {
+  opacity: 1;
+  background: rgba(20, 16, 5, 0.2);
+}
+
+.play-circle {
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 253, 245, 0.92);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--olive-dark);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  transition: var(--transition);
+}
+
+.play-circle svg {
+  width: 24px;
+  height: 24px;
+  margin-left: 3px;
+}
+
+.phone-card:hover .play-circle {
+  transform: scale(1.15);
+  background: var(--yellow-main);
+  color: var(--olive-deepest);
+}
+
+.play-label {
+  color: #FFFDF5;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+}
+
+.phone-info {
+  margin-top: 18px;
+  text-align: center;
+}
+
+.phone-title {
+  display: inline-block;
+  font-size: 1.22rem;
+  font-weight: 800;
+  color: #0E0C04;
+  letter-spacing: -0.01em;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 6px 18px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 3px 10px rgba(60, 48, 12, 0.1);
+  border: 1.5px solid rgba(131, 110, 23, 0.22);
+  backdrop-filter: blur(4px);
+  transition: var(--transition);
+}
+
+.phone-card:hover .phone-title {
+  background: #FFFDF5;
+  color: #000;
+  border-color: var(--yellow-deep);
+  box-shadow: 0 6px 16px rgba(60, 48, 12, 0.18);
+  transform: translateY(-2px);
+}
+
+/* --------------------------------------------------------------------------
+   SECCIÓN 4: VIDEOS HORIZONTALES (Recreación exacta Diapositiva 4)
+   2 Tablets apaisadas con marcos realistas
+   -------------------------------------------------------------------------- */
+.videos-horizontal-section {
+  padding: 100px 0 120px 0;
+  border-bottom: 1px solid rgba(131, 110, 23, 0.15);
+}
+
+.tablets-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.tablet-card {
+  position: relative;
+  border-radius: 32px;
+  background: #111;
+  padding: 12px;
+  box-shadow: 0 22px 50px rgba(25, 20, 5, 0.28);
+  border: 4px solid #2B2B2B;
+  cursor: pointer;
+  transition: var(--transition);
+  overflow: hidden;
+}
+
+.tablet-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 32px 70px rgba(25, 20, 5, 0.38);
+  border-color: var(--yellow-deep);
+}
+
+.tablet-screen {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 22px;
+  overflow: hidden;
+  background: #000;
+}
+
+.tablet-screen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.tablet-card:hover .tablet-screen img {
+  transform: scale(1.05);
+}
+
+.tablet-info {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.tablet-title {
+  display: inline-block;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #0E0C04;
+  letter-spacing: -0.01em;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 8px 24px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 3px 10px rgba(60, 48, 12, 0.1);
+  border: 1.5px solid rgba(131, 110, 23, 0.22);
+  backdrop-filter: blur(4px);
+  transition: var(--transition);
+}
+
+.tablet-card:hover .tablet-title {
+  background: #FFFDF5;
+  color: #000;
+  border-color: var(--yellow-deep);
+  box-shadow: 0 6px 16px rgba(60, 48, 12, 0.18);
+  transform: translateY(-2px);
+}
+
+/* --------------------------------------------------------------------------
+   SECCIÓN 5: CONTACTO (Recreación exacta Diapositiva 5)
+   Fondo amarillo cálido + Tipografía "NECESITA / Contáctame"
+   -------------------------------------------------------------------------- */
+.contact-section {
+  position: relative;
+  padding: 120px 0 100px 0;
+  background: radial-gradient(circle at 50% 40%, #FFF7D2 0%, #F8E399 60%, #EFCB6E 100%);
+  text-align: center;
+  overflow: hidden;
+}
+
+.contact-header {
+  margin-bottom: 40px;
+}
+
+.contact-eyebrow {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3.2vw, 2.4rem);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--olive-gold);
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+.contact-headline {
+  font-family: var(--font-display);
+  font-size: clamp(4.5rem, 14vw, 11rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--olive-gold);
+  text-transform: uppercase;
+  line-height: 0.85;
+  margin: 10px 0 5px 0;
+}
+
+.contact-script {
+  font-family: var(--font-script);
+  font-size: clamp(4rem, 11vw, 8.5rem);
+  font-weight: 700;
+  color: var(--olive-dark);
+  line-height: 0.95;
+  display: block;
+  transform: rotate(-3deg);
+  margin-top: -15px;
+}
+
+/* Barra de Contacto Directo Diapositiva 5 */
+.contact-direct-bar {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 16px 28px;
+  background: rgba(255, 253, 245, 0.85);
+  border: 2px solid rgba(131, 110, 23, 0.3);
+  padding: 18px 36px;
+  border-radius: var(--radius-full);
+  margin-top: 35px;
+  box-shadow: 0 10px 30px rgba(60, 48, 12, 0.12);
+  backdrop-filter: blur(8px);
+}
+
+.contact-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--olive-dark);
+  transition: var(--transition);
+}
+
+.contact-item svg {
+  width: 22px;
+  height: 22px;
+  color: var(--olive-forest);
+}
+
+.contact-item:hover {
+  color: var(--olive-forest);
+  transform: translateY(-2px);
+}
+
+.contact-separator {
+  width: 2px;
+  height: 24px;
+  background: rgba(131, 110, 23, 0.3);
+}
+
+/* Tarjetas de Acción Rápida (WhatsApp, Email, Instagram) */
+.contact-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 950px;
+  margin: 50px auto 0 auto;
+}
+
+.contact-card {
+  background: rgba(255, 253, 245, 0.9);
+  border-radius: var(--radius-md);
+  padding: 30px 24px;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(131, 110, 23, 0.2);
+  transition: var(--transition);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-medium);
+  border-color: var(--olive-gold);
+  background: #FFFDF5;
+}
+
+.contact-card-icon {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: var(--yellow-main);
+  color: var(--olive-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 12px rgba(79, 67, 18, 0.15);
+  transition: var(--transition);
+}
+
+.contact-card:hover .contact-card-icon {
+  background: var(--olive-dark);
+  color: #FFFDF5;
+}
+
+.contact-card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--olive-dark);
+  margin-bottom: 6px;
+}
+
+.contact-card-value {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 18px;
+  word-break: break-all;
+}
+
+.contact-card-btn {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--olive-dark);
+  color: #FFFDF5;
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 9px 20px;
+  border-radius: var(--radius-full);
+}
+
+.contact-card-btn:hover {
+  background: var(--olive-forest);
+}
+
+/* --------------------------------------------------------------------------
+   Footer
+   -------------------------------------------------------------------------- */
+.footer {
+  background: var(--olive-deepest);
+  color: rgba(255, 253, 245, 0.8);
+  padding: 40px 0;
+  font-size: 0.9rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-brand {
+  font-family: var(--font-script);
+  font-size: 1.8rem;
+  color: var(--yellow-main);
+  font-weight: 700;
+}
+
+.footer-links {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+}
+
+.footer-links a:hover {
+  color: var(--yellow-main);
+}
+
+/* --------------------------------------------------------------------------
+   Botón Flotante de WhatsApp
+   -------------------------------------------------------------------------- */
+.floating-whatsapp {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #25D366;
+  color: #FFF;
+  padding: 12px 20px 12px 16px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 10px 25px rgba(37, 211, 102, 0.45);
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: var(--transition);
+  animation: pulseFloat 3s ease-in-out infinite;
+}
+
+.floating-whatsapp svg {
+  width: 26px;
+  height: 26px;
+  fill: currentColor;
+}
+
+.floating-whatsapp:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 15px 35px rgba(37, 211, 102, 0.6);
+  color: #FFF;
+}
+
+@keyframes pulseFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Reproductor de Video Integrado en Maquetas (Teléfonos y Tablets)
+   -------------------------------------------------------------------------- */
+.video-screen-wrapper {
+  position: relative;
+  cursor: pointer;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.device-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: inherit;
+  background: #000;
+}
+
+.video-overlay-controls {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  background: rgba(18, 14, 5, 0.25);
+  transition: all 0.3s ease;
+  z-index: 8;
+  border-radius: inherit;
+}
+
+.video-screen-wrapper.is-playing .video-overlay-controls {
+  background: transparent;
+}
+
+/* Botón Central de Play/Pause */
+.screen-play-btn {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(255, 253, 245, 0.94);
+  color: var(--olive-deepest);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.45);
+  pointer-events: auto;
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease, background 0.2s ease;
+  z-index: 9;
+}
+
+.screen-play-btn svg {
+  width: 26px;
+  height: 26px;
+  margin-left: 3px;
+  fill: currentColor;
+}
+
+.screen-play-btn:hover {
+  transform: scale(1.12);
+  background: var(--yellow-main);
+}
+
+/* Cuando el video está reproduciéndose, ocultar el botón central */
+.video-screen-wrapper.is-playing .screen-play-btn {
+  opacity: 0;
+  transform: scale(0.85);
+  pointer-events: none;
+}
+
+/* Al pasar el ratón sobre un video en reproducción, mostrar icono sutil para pausar */
+.video-screen-wrapper.is-playing:hover .video-overlay-controls {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.video-screen-wrapper.is-playing:hover .screen-play-btn {
+  opacity: 0.9;
+  transform: scale(1);
+  pointer-events: auto;
+  background: rgba(255, 253, 245, 0.85);
+}
+
+/* Botón Flotante de Audio (Mute / Unmute) */
+.screen-sound-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(18, 14, 5, 0.65);
+  color: #FFFDF5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.screen-sound-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.screen-sound-btn:hover {
+  transform: scale(1.1);
+  background: var(--olive-dark);
+}
+
+/* Barra de Progreso en la Parte Inferior */
+.screen-progress-track {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.25);
+  z-index: 10;
+  border-radius: 0 0 34px 34px;
+  overflow: hidden;
+}
+
+.tablet-screen .screen-progress-track {
+  border-radius: 0 0 22px 22px;
+}
+
+.screen-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--yellow-main);
+  transition: width 0.1s linear;
+}
+
+/* --------------------------------------------------------------------------
+   Toast de Notificación (Copiado al portapapeles)
+   -------------------------------------------------------------------------- */
+.toast-notice {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--olive-dark);
+  color: #FFFDF5;
+  padding: 12px 24px;
+  border-radius: var(--radius-full);
+  font-size: 0.95rem;
+  font-weight: 600;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  z-index: 3000;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.toast-notice.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+/* --------------------------------------------------------------------------
+   Media Queries & Responsividad
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .phones-grid {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 640px;
+    margin: 0 auto;
+    gap: 30px;
+  }
+  
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .tablets-grid {
+    grid-template-columns: 1fr;
+    max-width: 650px;
+    margin: 0 auto;
+  }
+  
+  .contact-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-menu,
+  .btn-contact-nav {
+    display: none;
+  }
+
+  .mobile-toggle {
+    display: flex;
+  }
+
+  .hero-section {
+    padding-top: 90px;
+    padding-bottom: 40px;
+  }
+
+  .hero-composition {
+    min-height: 480px;
+  }
+
+  .hero-top-left {
+    position: static;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+
+  .hero-top-right {
+    position: static;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .hero-big-title-container {
+    position: static;
+    transform: none;
+    flex-direction: column;
+    text-align: center;
+    margin: 10px 0;
+  }
+
+  .hero-port,
+  .hero-folio {
+    font-size: 5rem;
+    line-height: 0.9;
+  }
+
+  .hero-center-photo {
+    width: auto;
+    margin: 15px auto;
+  }
+
+  .hero-center-photo img {
+    max-height: 290px;
+  }
+
+  .hero-bottom-left,
+  .hero-bottom-right {
+    position: static;
+    text-align: center;
+    margin-top: 15px;
+  }
+
+  .hero-cta-bar {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .contact-cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-direct-bar {
+    border-radius: var(--radius-md);
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .contact-separator {
+    display: none;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .floating-whatsapp span {
+    display: none;
+  }
+
+  .floating-whatsapp {
+    padding: 14px;
+    border-radius: 50%;
+  }
+}

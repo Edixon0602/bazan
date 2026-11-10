@@ -1,0 +1,10 @@
+# Directorios temporales de inspección y renders de trabajo
+extracted_assets/
+rendered_pages/
+assets/media/frames/
+
+# Logs y archivos del sistema
+*.log
+.DS_Store
+Thumbs.db
+desktop.ini
