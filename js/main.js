@@ -153,6 +153,36 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ------------------------------------------------------------------------
+  // Menú Hamburguesa para Dispositivos Móviles
+  // ------------------------------------------------------------------------
+  const mobileToggle = document.getElementById('mobileToggle');
+  const navMenu = document.querySelector('.nav-menu');
+
+  if (mobileToggle && navMenu) {
+    mobileToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      mobileToggle.classList.toggle('active');
+      navMenu.classList.toggle('open');
+    });
+
+    // Cerrar al hacer clic en un enlace de navegación
+    navMenu.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileToggle.classList.remove('active');
+        navMenu.classList.remove('open');
+      });
+    });
+
+    // Cerrar al hacer clic fuera del menú
+    document.addEventListener('click', (e) => {
+      if (!navMenu.contains(e.target) && !mobileToggle.contains(e.target)) {
+        mobileToggle.classList.remove('active');
+        navMenu.classList.remove('open');
+      }
+    });
+  }
+
+  // ------------------------------------------------------------------------
   // Navegación Suave (Smooth Scroll)
   // ------------------------------------------------------------------------
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {

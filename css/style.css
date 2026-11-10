@@ -203,16 +203,38 @@ button {
 .mobile-toggle {
   display: none;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 5px;
+  width: 40px;
+  height: 40px;
   padding: 8px;
+  background: rgba(131, 110, 23, 0.08);
+  border: 1px solid rgba(131, 110, 23, 0.22);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition);
 }
 
 .mobile-toggle span {
   display: block;
-  width: 24px;
-  height: 2px;
+  width: 22px;
+  height: 2.5px;
   background-color: var(--olive-dark);
-  transition: var(--transition);
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.mobile-toggle.active span:nth-child(1) {
+  transform: translateY(7.5px) rotate(45deg);
+}
+
+.mobile-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-toggle.active span:nth-child(3) {
+  transform: translateY(-7.5px) rotate(-45deg);
 }
 
 /* --------------------------------------------------------------------------
@@ -1271,14 +1293,20 @@ button {
 }
 
 /* --------------------------------------------------------------------------
-   Media Queries & Responsividad
+   Media Queries & Responsividad Total
    -------------------------------------------------------------------------- */
+
+/* Dispositivos Medianos y Tablets Horizontales (<= 1024px) */
 @media (max-width: 1024px) {
+  .container {
+    padding: 0 20px;
+  }
+
   .phones-grid {
     grid-template-columns: repeat(2, 1fr);
-    max-width: 640px;
+    max-width: 620px;
     margin: 0 auto;
-    gap: 30px;
+    gap: 32px;
   }
   
   .about-grid {
@@ -1286,114 +1314,595 @@ button {
     gap: 40px;
   }
 
+  .about-visual {
+    max-width: 600px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
   .tablets-grid {
     grid-template-columns: 1fr;
-    max-width: 650px;
+    max-width: 620px;
     margin: 0 auto;
+    gap: 36px;
   }
   
   .contact-cards-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
   }
 }
 
+/* Dispositivos Móviles y Tablets Verticales (<= 768px) */
 @media (max-width: 768px) {
-  .nav-menu,
+  /* Evitar todo desbordamiento horizontal */
+  html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  .container {
+    padding: 0 16px;
+  }
+
+  /* Navbar Móvil con Menú Desplegable */
+  .nav-container {
+    height: 64px;
+  }
+
+  .brand-logo {
+    flex-shrink: 1;
+    min-width: 0;
+  }
+
+  .brand-name {
+    font-size: 1.45rem;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .brand-tag {
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+  }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
   .btn-contact-nav {
-    display: none;
+    display: inline-flex;
+    padding: 7px 11px;
+    font-size: 0.8rem;
+    gap: 5px;
+  }
+
+  .btn-contact-nav svg {
+    width: 15px;
+    height: 15px;
   }
 
   .mobile-toggle {
     display: flex;
+    width: 38px;
+    height: 38px;
+    padding: 7px;
   }
 
+  .nav-menu {
+    position: fixed;
+    top: 64px;
+    left: 0;
+    width: 100%;
+    background: rgba(253, 247, 230, 0.98);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    flex-direction: column;
+    align-items: stretch;
+    padding: 20px 18px 26px;
+    gap: 10px;
+    box-shadow: 0 16px 35px rgba(50, 40, 10, 0.16);
+    border-bottom: 2px solid var(--yellow-deep);
+    transform: translateY(-140%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+    z-index: 999;
+  }
+
+  .nav-menu.open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .nav-menu li {
+    width: 100%;
+    list-style: none;
+  }
+
+  .nav-link {
+    display: block;
+    text-align: center;
+    font-size: 1.05rem;
+    font-weight: 700;
+    padding: 12px 16px;
+    border-radius: var(--radius-sm);
+    color: var(--olive-dark);
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid rgba(131, 110, 23, 0.12);
+  }
+
+  .nav-link::after {
+    display: none;
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    background: var(--yellow-main);
+    color: var(--olive-deepest);
+  }
+
+  /* Hero Section Móvil: Estructura Vertical Limpia e Impactante */
   .hero-section {
-    padding-top: 90px;
-    padding-bottom: 40px;
+    min-height: auto;
+    padding-top: 88px;
+    padding-bottom: 46px;
+  }
+
+  .hero-wrapper {
+    display: block;
+    width: 100%;
   }
 
   .hero-composition {
-    min-height: 480px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    gap: 8px;
+    width: 100%;
+    min-height: auto;
+    position: static;
   }
 
+  /* 1. Saludo y Nombre */
   .hero-top-left {
     position: static;
-    margin-bottom: 15px;
+    margin: 0;
     text-align: center;
+    order: 1;
+    width: 100%;
   }
 
+  .hero-greeting {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--olive-dark);
+    line-height: 1.2;
+  }
+
+  .hero-name {
+    font-size: clamp(2.8rem, 11vw, 3.8rem);
+    line-height: 1.05;
+    transform: rotate(-2deg);
+    margin-top: 2px;
+    color: var(--olive-deepest);
+  }
+
+  /* 2. Tagline Superior */
   .hero-top-right {
     position: static;
-    margin-bottom: 20px;
+    margin: 2px 0 4px 0;
     text-align: center;
+    order: 2;
+    width: 100%;
   }
 
+  .hero-tagline-top {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--olive-forest);
+    letter-spacing: 0.02em;
+  }
+
+  /* 3. Título Gigante "PORTFolio" */
   .hero-big-title-container {
     position: static;
     transform: none;
-    flex-direction: column;
-    text-align: center;
-    margin: 10px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: baseline;
+    gap: 8px;
+    width: 100%;
+    margin: 4px 0;
+    order: 3;
+    pointer-events: auto;
+    padding: 0;
   }
 
-  .hero-port,
+  .hero-port {
+    font-size: clamp(3rem, 13vw, 4.8rem);
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+    color: var(--olive-gold);
+  }
+
   .hero-folio {
-    font-size: 5rem;
-    line-height: 0.9;
+    font-size: clamp(3rem, 13vw, 4.8rem);
+    line-height: 0.92;
+    color: var(--olive-dark);
   }
 
+  /* 4. Fotografía Central de María */
   .hero-center-photo {
-    width: auto;
-    margin: 15px auto;
+    position: relative;
+    margin: 8px auto;
+    width: 100%;
+    max-width: 280px;
+    display: flex;
+    justify-content: center;
+    order: 4;
   }
 
   .hero-center-photo img {
-    max-height: 290px;
+    max-height: 275px;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
   }
 
-  .hero-bottom-left,
+  /* 5. Especialidades / Skills */
+  .hero-bottom-left {
+    position: static;
+    margin: 6px 0;
+    text-align: center;
+    order: 5;
+    width: 100%;
+  }
+
+  .hero-skills-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: center;
+  }
+
+  .hero-skills-list span {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--olive-forest);
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(131, 110, 23, 0.16);
+    padding: 4px 14px;
+    border-radius: var(--radius-full);
+  }
+
+  /* 6. Tagline Inferior */
   .hero-bottom-right {
     position: static;
+    margin: 6px 0 0 0;
     text-align: center;
-    margin-top: 15px;
+    order: 6;
+    width: 100%;
   }
 
+  .hero-tagline-bottom {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--olive-deepest);
+  }
+
+  /* 7. Botones de Acción */
   .hero-cta-bar {
+    margin-top: 20px;
+    display: flex;
     flex-direction: column;
     width: 100%;
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+    gap: 10px;
+    order: 7;
+    position: static;
   }
 
   .btn-primary,
   .btn-secondary {
     width: 100%;
     justify-content: center;
+    padding: 13px 20px;
+    font-size: 0.95rem;
   }
 
-  .contact-cards-grid {
+  /* Sección Sobre Mí Móvil */
+  .about-section {
+    padding: 60px 0;
+  }
+
+  .about-title {
+    font-size: 2.2rem;
+  }
+
+  .about-title-badge {
+    padding: 4px 20px;
+    margin-bottom: 18px;
+  }
+
+  .credentials-text {
+    font-size: 0.98rem;
+    line-height: 1.5;
+  }
+
+  .about-credentials-box {
+    padding: 16px 18px;
+    margin-bottom: 18px;
+  }
+
+  .about-bio-box {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  .about-visual {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .collage-container {
+    border-width: 5px;
+  }
+
+  /* Sección Videos Verticales Móvil */
+  .videos-vertical-section {
+    padding: 60px 0;
+  }
+
+  .section-brush-header {
+    margin-bottom: 35px;
+  }
+
+  .videos-brush-img {
+    max-width: 270px;
+  }
+
+  .section-subtitle {
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+    max-width: 290px;
+    margin: 0 auto;
+    line-height: 1.45;
+  }
+
+  /* Sección Videos Horizontales Móvil */
+  .videos-horizontal-section {
+    padding: 60px 0 70px 0;
+  }
+
+  .tablets-grid {
     grid-template-columns: 1fr;
+    max-width: 480px;
+    margin: 0 auto;
+    gap: 34px;
+  }
+
+  .tablet-card {
+    border-radius: 24px;
+    padding: 10px;
+    border-width: 3.5px;
+  }
+
+  .tablet-screen {
+    border-radius: 16px;
+  }
+
+  .tablet-title {
+    font-size: 1.15rem;
+    padding: 6px 20px;
+  }
+
+  /* Sección Contacto Móvil */
+  .contact-section {
+    padding: 70px 0 60px 0;
+  }
+
+  .contact-header {
+    margin-bottom: 24px;
+  }
+
+  .contact-eyebrow {
+    font-size: clamp(0.95rem, 3.8vw, 1.4rem);
+    max-width: 300px;
+    margin: 0 auto;
+    line-height: 1.35;
+  }
+
+  .contact-headline {
+    font-size: clamp(2.8rem, 12vw, 5.5rem);
+    line-height: 0.9;
+    margin: 6px 0;
+  }
+
+  .contact-script {
+    font-size: clamp(2.6rem, 11vw, 5rem);
+    margin-top: -6px;
   }
 
   .contact-direct-bar {
-    border-radius: var(--radius-md);
     flex-direction: column;
-    gap: 12px;
+    padding: 14px 18px;
+    border-radius: var(--radius-md);
+    max-width: 330px;
+    width: 100%;
+    gap: 10px;
+    margin: 25px auto 0 auto;
+  }
+
+  .contact-item {
+    font-size: 0.92rem;
+    word-break: break-all;
+    justify-content: center;
   }
 
   .contact-separator {
     display: none;
   }
 
+  .contact-cards-grid {
+    grid-template-columns: 1fr;
+    max-width: 320px;
+    margin: 26px auto 0 auto;
+    gap: 14px;
+  }
+
+  .contact-card {
+    padding: 22px 18px;
+  }
+
+  /* Footer Móvil */
+  .footer {
+    padding: 30px 0;
+  }
+
   .footer-content {
     flex-direction: column;
     text-align: center;
+    gap: 14px;
+  }
+
+  .footer-brand {
+    font-size: 1.6rem;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* Botón Flotante de WhatsApp Móvil */
+  .floating-whatsapp {
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border-radius: 50%;
+    box-shadow: 0 8px 24px rgba(37, 211, 102, 0.5);
   }
 
   .floating-whatsapp span {
     display: none;
   }
 
-  .floating-whatsapp {
-    padding: 14px;
-    border-radius: 50%;
+  .floating-whatsapp svg {
+    width: 26px;
+    height: 26px;
+    margin: 0;
+  }
+}
+
+/* Teléfonos Móviles Específicos (<= 640px) */
+@media (max-width: 640px) {
+  /* Grid de Teléfonos: 1 columna centrada y espaciosa */
+  .phones-grid {
+    grid-template-columns: 1fr;
+    max-width: 310px;
+    margin: 0 auto;
+    gap: 36px;
+  }
+
+  .phone-card {
+    border-radius: 36px;
+    padding: 8px;
+    border-width: 3px;
+  }
+
+  .phone-screen {
+    border-radius: 28px;
+  }
+
+  .phone-notch {
+    width: 62px;
+    height: 14px;
+    top: 11px;
+  }
+
+  .screen-play-btn {
+    width: 54px;
+    height: 54px;
+  }
+
+  .screen-play-btn svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .screen-sound-btn {
+    width: 32px;
+    height: 32px;
+    top: 10px;
+    right: 10px;
+  }
+
+  .screen-sound-btn svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  .phone-title {
+    font-size: 1.05rem;
+    padding: 6px 16px;
+  }
+}
+
+/* Pantallas Extra Pequeñas (<= 380px) */
+@media (max-width: 380px) {
+  .hero-name {
+    font-size: 2.6rem;
+  }
+
+  .hero-port,
+  .hero-folio {
+    font-size: 2.7rem;
+  }
+
+  .hero-center-photo img {
+    max-height: 235px;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    font-size: 0.9rem;
+    padding: 12px 14px;
+  }
+
+  .phones-grid {
+    max-width: 280px;
+  }
+
+  .phone-card {
+    border-radius: 32px;
+  }
+
+  .phone-screen {
+    border-radius: 24px;
+  }
+
+  .contact-headline {
+    font-size: 2.5rem;
+  }
+
+  .contact-script {
+    font-size: 2.3rem;
   }
 }
